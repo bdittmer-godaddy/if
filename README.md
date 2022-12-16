@@ -1,18 +1,52 @@
 "Christmas2022" by Brad Dittmer
 Include Exit Lister by Gavin Lambert.
 Include Underside by Eric Eve.
+[Include Hybrid Choices by Aw Freyr.]
+[Include Basic Screen Effects by Emily Short.]
 
 Use full-length room descriptions.
 
 Release along with cover art.
 
 
+[A person can be Calista, Corrina, Kyra, or Keona.]
+[The player is Calista.]
+[Move the player to the Family Room, without printing a room description.]
+
+The player's forename is a text that varies. The player's full name is a text that varies.
+
+[Rule for printing the banner text:
+    say "[header style][my title][roman type][line break]";
+    say "[story headline][line break]";
+    rule succeeds.]
+
+[When play begins:]
+After printing the banner text:
+    now the command prompt is "What is your name? > ".
+
+To decide whether collecting names:
+	if the command prompt is "What is your name? > ", yes;
+		no.
+
+After reading a command when collecting names:
+    now the player's full name is the player's command;
+    now the player's forename is word number 1 in the player's command;
+    now the command prompt is ">";
+    say "Hi, [player's forename]![paragraph break]";
+    say "[line break]It's a race to find your present, you must find your present in this virtual world to find it in the real world.  Make haste, the first to complete this gets first choice of an extra prize.[line break][line break]Hint:[line break]Try n, s, e, w, sw, etc. to move; up or down for stairs.[line break]Try inventory, look, look at, look under, look in, read, take, put, sit, ask about, enter, get on, push, ask x about y, give x to y, play, turn on x, etc. for actions.[line break][line break][line break]You find yourself in this virtual world holding only your phone.  You are standing in the Family Room.  You hear a beep, you might have just gotten a text.[line break][line break]";
+    move the player to the location;
+    reject the player's command.
+
+
+
 Volume 1 — The Game
 
 Book 1 — Setup, etc
 
-After printing the banner text: say "[line break]It's a race to find your present, you must find your present in this virtual world to find it in the real world.  Make haste, the first to complete this gets first choice of an extra prize.[line break][line break]Hint:[line break]Try n,s,e,w, sw, etc. to move.[line break]Try inventory, look, look at, look under, look in, read, take, put, sit, ask about, enter, get on, push, ask x about y, give x to y, play, turn on x, etc. for actions.[line break][line break][line break]You find yourself in this virtual world holding only your phone.  You hear a beep, you might have just gotten a text.[line break][line break]"
 
+[
+After printing the banner text: say "[line break]It's a race to find your present, you must find your present in this virtual world to find it in the real world.  Make haste, the first to complete this gets first choice of an extra prize.[line break][line break]Hint:[line break]Try n, s, e, w, sw, etc. to move; up or down for stairs.[line break]Try inventory, look, look at, look under, look in, read, take, put, sit, ask about, enter, get on, push, ask x about y, give x to y, play, turn on x, etc. for actions.[line break][line break][line break]You find yourself in this virtual world holding only your phone.  You are standing in the Family Room.  You hear a beep, you might have just gotten a text.[line break][line break]"
+]
 Figure of Snowflake is the file "snowflake.jpg".
 Figure of ChristmasTree is the file "tree.png".
 Figure of CandyCane is the file "candycane.png".
@@ -21,6 +55,9 @@ Figure of Reindeer is the file "reindeer.png".
 Figure of Key is the file "key.jpg".
 Figure of Chest is the file "chest.jpg".
 Figure of Present is the file "presents.png".
+Figure of TV1 is the file "vat-of-acid.png".
+Figure of TV2 is the file "christmas-story.jpg".
+
 When play begins: display the Figure of Present.
 
 [
@@ -34,9 +71,12 @@ Game Play:
 [x] Clue #4 - Snowman - Mailbox.
 [x] Clue #5 - Reindeer  - Basement. (secret room)
 	[x] Ask mary about clue
+	[x] sends to go talk to mary, hints that it's in the couch cushion.
 [x] Clue #6 - Key - Couch Cushion.  (key to chest)
-	[x] chest is where?
-	[x] sends to go talk to mary, hints that it's in the bedroom closet secret room.
+	[] chest appears where? in living room.
+	[] what is in chest?  map to where presents are
+	[] where are presents?  
+			if the player is.....
 
 Snowflake
 "Ha Ha, Tricked you.  I've hidden your present and now you have to follow the clues to find it.  - Buddy The Elf[line break][line break]Guess I can give you a hint, you may want to look under a bed."
@@ -77,7 +117,7 @@ This key will help you
    As long as you're not stupid.
 
 
-							say "As you pick up the last clue, they all start to glow.  They float up in the air in front of you and form a map...";
+say "As you pick up the last clue, they all start to glow.  They float up in the air in front of you and form a map...";
 to Chest.
 
 Chest.
@@ -118,7 +158,19 @@ After reading a command when collecting names:
     say "[banner text]";
     move the player to the location;
     reject the player's command.
+
+The description of Edge Park is "[Edge_Park_desc]."
+
+To say Edge_Park_desc:
+	if the player is Harriet, say "You're at the south edge of the park. It's super hot today and the sun is pouring down on the grass and the flowerbeds[sick tree desc].[paragraph break]From here, paths lead north, east and west through the park, and to the south is the picnic area where mum and dad will set up lunch later";
+	if the player is Demi, say "This is the south edge of the park. The sky is blue and bright today, and the air is warm[sick tree desc].[paragraph break]Paths lead north, east and west, and to the south is the picnic area";
+	if the turn count is 1 and given_intro is 0 and player is Harriet:
+		say ".[paragraph break](If this is your first time playing Six, type HELP to learn some very helpful stuff)";
+...
+now the player is Pirate Jenny
 ]
+
+
 
 [Def: Reading]
 A thing has some text called the reading-material. The reading-material of a thing is usually "".
@@ -150,6 +202,11 @@ Understand “climb [up]” or “climb [down]” as going.
 [Def: Animal]
 The can't take other people rule does nothing when taking an animal.
 
+[Def: TV]
+A television is a kind of device. A television has a number
+called the channel. Understand the channel property as
+referring to a television. Understand "channel" as a
+television.
 
 
 Book 2 - The Main Floor
@@ -164,14 +221,15 @@ Family Room is a room.  The description is "The room is decorated wall to wall w
 A Christmas Book is in the Family Room. The description is "T'Was the Nightmare Before Christmas.". The reading-material of the Christmas Book is "T'Was the Nightmare Before Christmas.[line break]And all through the house.[line break]Not a creature was stiffing.[line break]Not even a mouse."
 The Christmas Book can be xread or unread. The Christmas Book is unread.
 After reading the Christmas Book:
-        now the Christmas Book is xread;
-        say "Well it wasn't a Steven King classic like Dark Tower, but what'cha gunna do, gotta do the Christmas thing.";
-        rule succeeds.
+	now the Christmas Book is xread;
+	say "Well it wasn't a Steven King classic like Dark Tower, but what'cha gunna do, gotta do the Christmas thing.";
+	rule succeeds.
 
 A Chair is a enterable supporter in the Family Room.
-A Family Room Fireplace is a supporter in the Family Room.  The description is "There is a fake fireplace here decorated with stockings and the usual garb."
+[A Family Room Fireplace is a supporter in the Family Room.  The description is "There is a fake fireplace here decorated with stockings and the usual garb."
 A Christmas Stocking is a open container.  The description is "The stocking is empty, you already got all the goodies."
-The Christmas Stocking is on the Family Room Fireplace.
+The Christmas Stocking is on the Family Room Fireplace.]
+A Family Room Fireplace is a scenery in the Family Room.  The description is "There is a fake fireplace here decorated with stockings and the usual garb."
 A Nativity Scene is a scenery in the Family Room.  The description is "There is a Nativity Scene here showing us the true reason for Christmas!".
 
 A Piano is a musical instrument in the Family Room.
@@ -198,8 +256,8 @@ Every turn:
 Section 2 - Dining Room
 
 The Dining Room is a room.  The description is "The room has a large table in it with various stuff spread all about.[line break][line break]To the north is the Living Room.[line break]To the west is the Kitchen."
-A Dining Table is a object in the Dining Room.
-An Ornament is on the Dining Table.
+A Dining Table is a object in the Dining Room.  The description is "There is a scrumptuous breakfast on the table, stuffed french toast and orange juice.".
+[An Ornament is on the Dining Table.]
 The Dining Room is south of the Family Room.
 
 [TODO: clean this up]
@@ -249,7 +307,7 @@ otherwise say “[the noun] says 'Nonya'.” instead.
 
 Section 3 - Foyer
 
-The Foyer is a room.  The description is “A grand staircase decorated with all sorts of Christmas decorations leads up to the 2nd level.[line break]A separate plain set of stairs leads down to the basement.[line break][line break]To the south is the Kitchen.[line break]To the east is the Family Room.[line break]To the north, the Front door leads outside.[line break]To the west is the Laundry Room[line break]To the south west is the First Floor Bathroom”.
+The Foyer is a room.  The description is “This room has shoes all over the place.[line break][line break]A grand staircase decorated with all sorts of Christmas decorations leads up to the 2nd level.[line break]A separate plain set of stairs leads down to the basement.[line break]To the south is the Kitchen.[line break]To the east is the Family Room.[line break]To the north, the Front door leads outside.[line break]To the west is the Laundry Room[line break]To the south west is the First Floor Bathroom”.
 The Foyer is west of the Family Room.
 The Foyer is north of the Kitchen.
 Down from Foyer is Basement.
@@ -273,12 +331,12 @@ The Laundry Room is west of the Foyer.
 
 Section 5 - Garage
 
-The Garage is a room. The description is "There is a Jeep and a Traverse parked in the garage.  The doors are closed.[line break]To the east is the Laundry Room."
+The Garage is a room. The description is "There is a Jeep and a Traverse parked in the garage.  The doors are closed.[line break][line break]To the east is the Laundry Room."
 The Garage is west of the Laundry Room.
 
 Section 6 - Kitchen
 
-The Kitchen is a room.  The description is "The Kitchen has the usual appliances (Stove, Microwave, Fridge, Dishwasher, etc.).  There are a few dirty dishes in the sink.[line break]There is the strong smell of coffee.[line break][line break]To the north is the Foyer.[line break]To the east is the Dining Room.[line break]To the west is the Living Room.[line break]To the south is the Outside."
+The Kitchen is a room.  The description is "The Kitchen has the usual appliances (Stove, Microwave, Fridge, Dishwasher, etc.).  There are a few dirty dishes in the sink.  There is the strong smell of coffee.[line break][line break]To the north is the Foyer.[line break]To the east is the Dining Room.[line break]To the west is the Living Room.[line break]To the south is the Outside."
 The Kitchen is west of the Dining Room.
 The Back Porch is south of the Kitchen.
 A Kitchen Table is a object in the Kitchen.  The description is "This is where all the papers and junk gets thrown."
@@ -347,22 +405,22 @@ Section 8 - Living Room
 The Living Room is a room. The description is "This is a small room with couches on the north and west walls. There is a patio chair in the corner.  On the wall is a fireplace surrounded by bookshelves.[line break][line break]To the east is the Kitchen".
 The Living Room is west of the Kitchen.
 
-A Bookshelf is a container in the Living Room.
+[A Bookshelf is a container in the Living Room.
 A Sofa is an enterable supporter in the Living Room.
-A Love Seat is an enterable supporter in the Living Room.
+A Love Seat is an enterable supporter in the Living Room.]
 A Living Room Fireplace is a scenery in the Living Room.  The description is "The fireplace hasn't been used in years.  There is a slight draft coming from the outside."
 
-A Lawn Furniture Couch is an enterable supporter in the Living Room.
+A Lawn Furniture Couch is an enterable supporter in the Living Room.  The description is "Though first done as a joke, the annual tradition of bringing in the Lawn Furniture has stuck.  Surprising it is the most comfortable couch in the house.".
 A Cushion is an enterable supporter on the Lawn Furniture Couch.
 
-The Skeleton Key is a object. The description is "...blah,blah...The is the Alpha key from Locke an Key."
+The Skeleton Key is a object. The description is "This is a Skeleton Key.  It looks like the Alpha key from Locke an Key."
 Instead of looking under the Cushion when the Skeleton Key is off-stage:
     say "There seems to be a key and a clue under the cushion.";
     move the Skeleton Key to the Cushion;
     move the Key Clue to the Cushion.
 
 There is a Key Clue.  The description is "A small note card on brown paper.  There is Key insignia in the top left corner."
-The reading-material of the Key Clue is "Well, you did it, gotta hand it to you...one more riddle[line break][line break]Your quest is almost done[line break],
+The reading-material of the Key Clue is "Well, you did it, gotta hand it to you...ok, maybe just one more riddle[line break][line break]Your quest is almost done[line break],
    Your persistence cannot be reputed[line break].
 This key will help you[line break]
    As long as you're not stupid.[line break]".
@@ -370,8 +428,15 @@ This key will help you[line break]
 Before reading the Key Clue:
 	display the Figure of Key.
 
+
 [TODO: Charlie Brown nativity sings hark the herald]
-[TODO: TV is playing christmas story / remote change]
+
+[TV is playing christmas story / remote change]
+The Living Room TV is a television in the Living Room.  The description is "The TV has been playing Christmas Story all day long.  You cannot find the remote".
+The Living Room TV is switched on.
+Before examining the Living Room TV:
+	display the Figure of TV2.
+
 
 
 Book 3 — The Basement
@@ -392,7 +457,12 @@ The Basement TV Room is a room.  The description is "There is a TV here with a S
 The Basement TV Room is south of the Basement Office.
 The Basement TV Room is east of the Basement Game Room.
 [cable closet]
-[TODO: TV is playing Rick and Morty / vat of Acid / remote change]
+[TV is playing Rick and Morty / vat of Acid / remote change]
+The Basement TV Room TV is a television in the Basement TV Room.  The description is "The TV is playing Rick and Morty; one of the best episodes ever.  You cannot find the remote".
+The Basement TV Room TV is switched on.
+Before examining the Basement TV Room TV:
+	display the Figure of TV1.
+
 
 Section 4 - Hallway
 
@@ -452,7 +522,7 @@ Book 4 — The Upstairs
 Section 1 - Hallway
 
 
-The Second Floor Hallway is a room.  The description is "This is a long narrow hallway.  There are pictures and inspirational sayings on all the walls.  There is a short bookshelf along the wall.[line break][line break]To the north is a Bedroom.[line break]To the west is a Bedroom.[line break]To the south is a Bedroom.[line break]To the east is a Bedroom.[line break]To the southwest is a Bathroom."
+The Second Floor Hallway is a room.  The description is "This is a long narrow hallway.  There are pictures and inspirational sayings on all the walls.  There is a short bookshelf along the wall.[line break][line break]Down is the foyer[line break]To the north is a Bedroom.[line break]To the west is a Bedroom.[line break]To the south is a Bedroom.[line break]To the east is a Bedroom.[line break]To the southwest is a Bathroom."
 [put book in bookshelf???]
 
 A Second Floor Hallway Closet is a openable closed container.  The description is "The closet contains various board games, towels, etc... ".
@@ -561,14 +631,29 @@ The Master Bathroom Closet is in the Master Bathroom.
 
 
 [TODO: Place this somewhere]
-A Strange Ornate Chest is a locked container in the Master Bathroom Closet.  The description is "Pandora's Chest.  There is an old looking lock on the chest, keeping it's contents safe."
+A Strange Ornate Chest is a locked container.  The description is "Pandora's Chest.  There is an old looking lock on the chest, keeping it's contents safe."
+The Strange Ornate Chest is in the Master Closet.
 The Skeleton Key unlocks the Strange Ornate Chest.
-[The Key Clue is a object. The description is "A small note card on orange paper."
-The reading-material of the Key Clue is ".Roses are red, violets are stupidr."
-The Key Clue is inside the Strange Ornate Chest.
-]
-Before opening the Strange Ornate Chest:
+The Chest Clue is a object. The description is "A small note card on orange paper.  There is a chest insignia in the top left corner.".
+The reading-material of the Chest Clue is "What are you waiting for, you won the game, go claim your prize in the real world where the chest is found".
+The Chest Clue is inside the Strange Ornate Chest.
+Before reading the Chest Clue:
 	display the Figure of Chest.
+[Before opening the Strange Ornate Chest:
+	display the Figure of Chest.]
+After reading the Chest Clue:
+	say "Congratulations you won the game.!";
+	end the story.
+[	if the player's forename is "Calista":
+		say "You wazzup";
+		rule succeeds;
+	otherwise:
+]
+
+A CandyCane Clue is a object. The description is "A small note card on blue paper.  There is a candy cane insignia in the top left corner."
+The reading-material of the CandyCane Clue is "All right, gotta hand it to you, doing pretty good so far.  Let's make this more difficult.[line break][line break]I Start with M, end with X and have never ending amount of letters. What am I?"
+
+
 
 
 Book 5 - Outside
@@ -651,5 +736,5 @@ Every turn:
 				if the player is carrying the Snowman Clue:
 					if the player is carrying the Reindeer Clue:
 						if the player is carrying the Key Clue:
-							say "As you pick up the last clue, they all start to glow.  They float up in the air in front of you and form a map.  It is a picture of the house showing the location of a chest.";
-							end the story.
+							say "As you pick up the last clue, they all start to glow.  They float up in the air in front of you and form a map.  It is a picture of the house showing the location of a chest.".
+							[end the story.]
