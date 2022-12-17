@@ -13,7 +13,6 @@ Release along with cover art.
 [The player is Calista.]
 [Move the player to the Family Room, without printing a room description.]
 
-The player's forename is a text that varies. The player's full name is a text that varies.
 
 [Rule for printing the banner text:
     say "[header style][my title][roman type][line break]";
@@ -21,6 +20,8 @@ The player's forename is a text that varies. The player's full name is a text th
     rule succeeds.]
 
 [When play begins:]
+[
+The player's forename is a text that varies. The player's full name is a text that varies.
 After printing the banner text:
     now the command prompt is "What is your name? > ".
 
@@ -35,7 +36,7 @@ After reading a command when collecting names:
     say "Hi, [player's forename]![paragraph break]";
     say "[line break]It's a race to find your present, you must find your present in this virtual world to find it in the real world.  Make haste, the first to complete this gets first choice of an extra prize.[line break][line break]Hint:[line break]Try n, s, e, w, sw, etc. to move; up or down for stairs.[line break]Try inventory, look, look at, look under, look in, read, take, put, sit, ask about, enter, get on, push, ask x about y, give x to y, play, turn on x, etc. for actions.[line break][line break][line break]You find yourself in this virtual world holding only your phone.  You are standing in the Family Room.  You hear a beep, you might have just gotten a text.[line break][line break]";
     move the player to the location;
-    reject the player's command.
+    reject the player's command.]
 
 
 
@@ -44,9 +45,9 @@ Volume 1 — The Game
 Book 1 — Setup, etc
 
 
-[
-After printing the banner text: say "[line break]It's a race to find your present, you must find your present in this virtual world to find it in the real world.  Make haste, the first to complete this gets first choice of an extra prize.[line break][line break]Hint:[line break]Try n, s, e, w, sw, etc. to move; up or down for stairs.[line break]Try inventory, look, look at, look under, look in, read, take, put, sit, ask about, enter, get on, push, ask x about y, give x to y, play, turn on x, etc. for actions.[line break][line break][line break]You find yourself in this virtual world holding only your phone.  You are standing in the Family Room.  You hear a beep, you might have just gotten a text.[line break][line break]"
-]
+
+After printing the banner text: say "[line break]It's a race to find your present, you must find your present in this virtual world to find it in the real world.  Make haste, the first to complete this gets first choice of an extra prize.[line break][line break]Hint:[line break]Try n, s, e, w, sw, etc. to move; up or down for stairs.[line break]Try inventory, look, look at, look under, look in, read, take, put, sit, ask about, enter, get on, push, ask x about y, give x to y, play, turn on x, etc. for actions.[line break][line break][line break]You find yourself in this virtual world holding only your phone.  You are standing in the Family Room.  You hear a beep, you might have just gotten a text.[line break][line break]Hint: you might want to look at your phone.[line break]".
+
 Figure of Snowflake is the file "snowflake.jpg".
 Figure of ChristmasTree is the file "tree.png".
 Figure of CandyCane is the file "candycane.png".
@@ -131,6 +132,7 @@ Easter Eggs:
 	Patches
 	Coffee
 	Pokemon Card
+	Book to bookshelf - ends game
 	Mary - to do interaction
 	TODO: Fireplace - portal to Hoovie
 ]
@@ -632,10 +634,10 @@ The Master Bathroom Closet is in the Master Bathroom.
 
 [TODO: Place this somewhere]
 A Strange Ornate Chest is a locked container.  The description is "Pandora's Chest.  There is an old looking lock on the chest, keeping it's contents safe."
-The Strange Ornate Chest is in the Master Closet.
+[The Strange Ornate Chest is in the Master Closet.]
 The Skeleton Key unlocks the Strange Ornate Chest.
 The Chest Clue is a object. The description is "A small note card on orange paper.  There is a chest insignia in the top left corner.".
-The reading-material of the Chest Clue is "What are you waiting for, you won the game, go claim your prize in the real world where the chest is found".
+The reading-material of the Chest Clue is "What are you waiting for, you won the game, go claim your prize in the real world. Go get your present in the Master Bedroom Closet.".
 The Chest Clue is inside the Strange Ornate Chest.
 Before reading the Chest Clue:
 	display the Figure of Chest.
@@ -721,13 +723,21 @@ Book 6 - Game Rules
 
 Section 1 - Turn Checks
 
+SHOWCHEST is a number variable.
+[GPTAKEN is a number variable.]
+When play begins:
+	now SHOWCHEST is 0.
+[	now GPTAKEN is 0.]
+
 Every turn:
 	if the Guinea Pig is in Back Yard:
+[		if GPTAKEN is 0:
+			increase GPTAKEN by 1;]
 		say "OMG, NO!!!!!!   An Eagle just swooped down and took the Guinea Pig.";
 		remove the Guinea Pig from play.
 Every turn:
 	if the Christmas Book is in the Hallway Bookshelf:
-		say "Thanks for picking up for me, you know what, you're all good.  Go get your present ...";
+		say "Thanks for picking up for me, you know what, you're all good.  Go get your present in the Master Bedroom Closet.";
 		end the story.
 Every turn:
 	if the player is carrying the Snowflake Clue:
@@ -736,5 +746,18 @@ Every turn:
 				if the player is carrying the Snowman Clue:
 					if the player is carrying the Reindeer Clue:
 						if the player is carrying the Key Clue:
-							say "As you pick up the last clue, they all start to glow.  They float up in the air in front of you and form a map.  It is a picture of the house showing the location of a chest.".
-							[end the story.]
+							if SHOWCHEST is 0:
+								increase SHOWCHEST by 1;
+								say "As you pick up the last clue, they all start to glow.  They float up in the air in front of you, there's a big flash and the clues disappear and a Strange Ornage Chest appears.";
+								move the Strange Ornate Chest to the player;
+								remove the Snowflake Clue from play;
+								remove the Tree Clue from play;
+								remove the CandyCane Clue from play;
+								remove the Snowman Clue from play;
+								remove the Reindeer Clue from play;
+								remove the Key Clue from play.
+								[end the story.]
+
+[
+
+]
