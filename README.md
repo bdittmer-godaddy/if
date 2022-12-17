@@ -1,4 +1,4 @@
-"Christmas2022" by Brad Dittmer
+"Christmas Hunt 2022" by Brad Dittmer
 Include Exit Lister by Gavin Lambert.
 Include Underside by Eric Eve.
 [Include Hybrid Choices by Aw Freyr.]
@@ -45,7 +45,6 @@ Volume 1 — The Game
 Book 1 — Setup, etc
 
 
-
 After printing the banner text: say "[line break]It's a race to find your present, you must find your present in this virtual world to find it in the real world.  Make haste, the first to complete this gets first choice of an extra prize.[line break][line break]Hint:[line break]Try n, s, e, w, sw, etc. to move; up or down for stairs.[line break]Try inventory, look, look at, look under, look in, read, take, put, sit, ask about, enter, get on, push, ask x about y, give x to y, play, turn on x, etc. for actions.[line break][line break][line break]You find yourself in this virtual world holding only your phone.  You are standing in the Family Room.  You hear a beep, you might have just gotten a text.[line break][line break]Hint: you might want to look at your phone.[line break]".
 
 Figure of Snowflake is the file "snowflake.jpg".
@@ -78,51 +77,6 @@ Game Play:
 	[] what is in chest?  map to where presents are
 	[] where are presents?  
 			if the player is.....
-
-Snowflake
-"Ha Ha, Tricked you.  I've hidden your present and now you have to follow the clues to find it.  - Buddy The Elf[line break][line break]Guess I can give you a hint, you may want to look under a bed."
-
-Tree
-"Well, you got this one, but you'll not get the rest.  You'll have to solve this riddle to get your next clue.[line break][line break]I am filled up, however never go down.[line break]
-.TODO...[line break]
-When you jump in you get all wet.[line break]
-Spend a day with me and you'll have a smile I bet.[line break]
-Sometimes I'm cold, other times I am not.[line break]
-It's best to use when it is hot.[line break]
-What am I?"
-
-Candy Cane
-"All right, gotta hand it to you, doing pretty good so far.  Let's make this more difficult.[line break][line break]I Start with M, end with X and have never ending amount of letters. What am I?"
-
-Snowman
-"The next clue is not so obvious.  It is hidden in a secret room named after our favourite mystery solving dog."
-
-Reindeer
-"You may want to go and ask about a clue from the young lady named 'your mom' . And that's not an urban diss."
-
-Chat w/ Mary
-leads to couch cushion. / key
-
-Key
-There is a Key Clue.  The description is "A small note card on gray paper.  There is Key insignia in the top left corner."
-The reading-material of the Key Clue is "Well, you did it, gotta hand it to you...one more riddle[line break][line break]Your quest is almost done[line break],
-   Your persistence cannot be reputed[line break].
-This key will help you[line break]
-   As long as you're not stupid.[line break]"
-
-s "A small note card on orange paper."
-s ".Roses are red, violets are stupidr."
-Your quest is almost done,
-   Your persistence cannot be reputed.
-This key will help you
-   As long as you're not stupid.
-
-
-say "As you pick up the last clue, they all start to glow.  They float up in the air in front of you and form a map...";
-to Chest.
-
-Chest.
-
 
 
 [] Experience Pts.
@@ -412,7 +366,7 @@ A Sofa is an enterable supporter in the Living Room.
 A Love Seat is an enterable supporter in the Living Room.]
 A Living Room Fireplace is a scenery in the Living Room.  The description is "The fireplace hasn't been used in years.  There is a slight draft coming from the outside."
 
-A Lawn Furniture Couch is an enterable supporter in the Living Room.  The description is "Though first done as a joke, the annual tradition of bringing in the Lawn Furniture has stuck.  Surprising it is the most comfortable couch in the house.".
+A Lawn Furniture Couch is an enterable supporter in the Living Room.  The description is "Though first done as a joke, the annual tradition of bringing in the Lawn Furniture has stuck.  Surprising it is the most comfortable couch in the house.[line break][line break]You spot something sticking out from underneath the cushion.".
 A Cushion is an enterable supporter on the Lawn Furniture Couch.
 
 The Skeleton Key is a object. The description is "This is a Skeleton Key.  It looks like the Alpha key from Locke an Key."
@@ -689,7 +643,7 @@ After opening the Fence Gate for the first time:
 	move the Patches to the Neighborhood.
 
 
-A Oak Tree is a supporter in the Back Yard.  The description is "A large tree has a long yellow rope tied to it."
+A Oak Tree is a supporter in the Back Yard.  The description is "A large tree has a long yellow rope tied to it.".
 [TODO: add climb rope]
 
 [Pool]
