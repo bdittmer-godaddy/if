@@ -45,7 +45,7 @@ Volume 1 — The Game
 Book 1 — Setup, etc
 
 
-After printing the banner text: say "[line break]It's a race to find your present, you must find your present in this virtual world to find it in the real world.  Make haste, the first to complete this gets first choice of an extra prize.[line break][line break]Hint:[line break]Try n, s, e, w, sw, etc. to move; up or down for stairs.[line break]Try inventory, look, look at, look under, look in, read, take, put, sit, ask about, enter, get on, push, ask x about y, give x to y, play, turn on x, etc. for actions.[line break][line break][line break]You find yourself in this virtual world holding only your phone.  You are standing in the Family Room.  You hear a beep, you might have just gotten a text.[line break][line break]Hint: you might want to look at your phone.[line break]".
+After printing the banner text: say "[line break]It's an interactive quest to find your present, you must find your present in this virtual world to find it in the real world.[line break][line break]Hint:[line break]Try n, s, e, w, sw, etc. to move; up or down for stairs.[line break]Try inventory, look, look at, look under, look in, read, take, put, sit, ask about, enter, get on, push, ask x about y, give x to y, play, turn on x, etc. for actions.[line break][line break][line break]You find yourself in this virtual world holding only your phone.  You are standing in the Family Room.  You hear a beep, you might have just gotten a text.[line break][line break]Hint: you might want to look at your phone.[line break]".
 
 Figure of Snowflake is the file "snowflake.jpg".
 Figure of ChristmasTree is the file "tree.png".
@@ -181,28 +181,30 @@ After reading the Christmas Book:
 	say "Well it wasn't a Steven King classic like Dark Tower, but what'cha gunna do, gotta do the Christmas thing.";
 	rule succeeds.
 
-A Chair is a enterable supporter in the Family Room.
+A Chair is a enterable supporter in the Family Room.  The description is "The chair has a warm blanket draped across the back and a Christmas pillow on it.  It appears very inviting.".
 [A Family Room Fireplace is a supporter in the Family Room.  The description is "There is a fake fireplace here decorated with stockings and the usual garb."
 A Christmas Stocking is a open container.  The description is "The stocking is empty, you already got all the goodies."
 The Christmas Stocking is on the Family Room Fireplace.]
 A Family Room Fireplace is a scenery in the Family Room.  The description is "There is a fake fireplace here decorated with stockings and the usual garb."
 A Nativity Scene is a scenery in the Family Room.  The description is "There is a Nativity Scene here showing us the true reason for Christmas!".
 
-A Piano is a musical instrument in the Family Room.
+A Piano is a musical instrument in the Family Room.  The description is "There are a few keys out of tune.".
 
 
-A Christmas Tree is a supporter in the Family Room.
+A Christmas Tree is a supporter in the Family Room.  The description is "The tree is decorated beautifully.  You can just make out something under the tree, perhaps there is a missed present under the tree.".
 A Present is a openable closed container.  The description is "The tag says From: Mom & Dad."
 A Snowflake Clue is a object in the present. The description is "A small note card on white paper.  There is a snowflake insignia in the top left corner."
 The reading-material of the Snowflake Clue is "Ha Ha, Tricked you.  I've hidden your present and now you have to follow the clues to find it.  - Buddy The Elf[line break][line break]Guess I can give you a hint, you may want to look under a bed."
 Before reading the Snowflake Clue:
 	display the Figure of Snowflake.
-
+[This seems important, you may want to take the clue and read it.]
 
 There is a Present. [This places it "off-stage" until we move it somewhere else.]
 Instead of looking under the Christmas Tree when the Present is off-stage:
     say "There seems to be a present under the tree.";
     move the Present to the Family Room.
+After opening the Present:
+	say "You open the Present, revealing a Snowflake Clue.  This seems important, you may want to take the clue and read it.".
 
 Every turn:
 	if the player is on the Chair:
@@ -217,7 +219,7 @@ A Dining Table is a object in the Dining Room.  The description is "There is a s
 The Dining Room is south of the Family Room.
 
 [TODO: clean this up]
-Mary is a woman in Dining Room. The description is "Mary is busy cleaning up papers from the Christmas presents".
+Mary is a woman in Dining Room. The description is "Mary has just gotten breakfast ready and is busy cleaning up papers from the Christmas presents.".
 
 Table of Mary's Replies
 Topic	Replies
@@ -230,6 +232,10 @@ Topic	Replies
 "story"	"[TheChristmasStory]"
 "glasses"	"[LostMyGlasses]"
 "phone"	"[LostMyPhone]"
+"rick and morty"	"[RickMorty]"
+"rick"	"[RickMorty]"
+"morty"	"[RickMorty]"
+"bojak"	"[RickMorty]"
 
 To say TheChristmasStory:
 	say "Did you say The Christmas Story.  That is my all time favorite Christmas movie.  Hey, that's a great idea, let's watch it tonight.".
@@ -246,8 +252,11 @@ To say LostMyGlasses:
 To say LostMyPhone:
 	say "OMG, I think I lost my phone, have you seen it anywhere?.  Oh wait, nm, here it is.".
 
+To say RickMorty:
+	say "Ugh, I just don't get it.".
+
 To say TheClue:
-	say "Oh, I'm so glad you asked, some elf ran up and gave this to me.  He didn't really say much just ran off.[line break][line break]Here you go, oh wait, I just had it, now I cannot find it.  I was just in in watching the best movie ever, Goonies.  Must have fallen out there?".
+	say "Oh, I'm so glad you asked, some elf ran up and gave this to me.  He didn't really say much just ran off.[line break][line break]Here you go, oh wait, I just had it, now I cannot find it.  I was just in in watching the best movie ever, Christmas Story.  Must have fallen out when I was sitting down on the Patio Couch?".
 	[if Mary carries an clue:
 		say ".."
 		[try Mary giving the clue to the player;]
@@ -512,7 +521,9 @@ Visibility rule when looking under Kiki's Bed:
 	if the player is carrying a switched on thing (called flashlight):
 		say "You shine [the flashlight] under [the noun]...";
 		there is sufficient light;
-	there is insufficient light.
+	otherwise:
+		say "You probably need a flashlight to see under here, where is that bad boy usually kept?...";
+		there is insufficient light.
 
 There is a Tree Clue.  The description is "A small note card on green paper.  There is a Christmas Tree insignia in the top left corner."
 The reading-material of the Tree Clue is "Well, you got this one, but you'll not get the rest.  You'll have to solve this riddle to get your next clue.[line break][line break]I am filled up, however never go down.[line break]
@@ -565,8 +576,8 @@ Instead of looking under the Extra Bed when the junk is lost:
     now the junk is found;
     say "There is an odd shaped purple animal eating the trash saying 'Mmmmm trash, I love trash!'".
 
-A Extra Bathroom Closet is a openable closed container.  The description is "The closet contains all sorts of stuff.  Opening it will cause all sorts of junk to all out."
-The Extra Bathroom Closet is in the Extra Bedroom.
+A Extra Bedroom Closet is a openable closed container.  The description is "The closet contains all sorts of stuff.  Opening it will cause all sorts of junk to all out."
+The Extra Bedroom Closet is in the Extra Bedroom.
 
 
 Section 6 - Master Bedroom
